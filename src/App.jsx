@@ -15,7 +15,7 @@ export const App = () => {
     setIncompleteTodos(newTodos);
     setTodoText("");
   };
-  // TODリスト削除処理
+  // TODOリスト削除処理
   const onChickDelete = (index) => {
     // 配列コピー
     const newTodos = [...incompleteTodos];
@@ -24,6 +24,21 @@ export const App = () => {
     //　削除された配列を追加
     setIncompleteTodos(newTodos);
   };
+
+  // 完了処理追加
+  const onChickTodoAdd = (index) => {
+    // 配列コピー
+    const newTodos = [...incompleteTodos];
+    //　完了のTODOの配列とClickイベントで完了したTODOをreturnTodosに追加
+    const retrunTodos = [...completeTodos, newTodos[index]];
+    // 完了TODOリストをレンダリング
+    setCompleteTodos(retrunTodos);
+    // 削除処理
+    newTodos.splice(index, 1);
+    //　削除された配列を追加
+    setIncompleteTodos(newTodos);
+  };
+
   // retrun処理-------------------------------------------
   return (
     <>
@@ -43,7 +58,7 @@ export const App = () => {
             return (
               <div key={todo} className="list-row">
                 <li>{todo}</li>
-                <button>完了</button>
+                <button onClick={() => onChickTodoAdd(index)}>完了</button>
                 <button onClick={() => onChickDelete(index)}>削除</button>
               </div>
             );
