@@ -8,14 +8,16 @@ export const App = () => {
   const [todoText, setTodoText] = useState("");
   // 処理内容------------------------------------------------------------
   const onChangeTodoText = (event) => setTodoText(event.target.value);
-  // TODO追加処理
+
+  // TODO追加処理-----------------------------------------------------
   const onChickAdd = () => {
     if (todoText === "") return;
     const newTodos = [...incompleteTodos, todoText];
     setIncompleteTodos(newTodos);
     setTodoText("");
   };
-  // TODOリスト削除処理
+
+  // TODOリスト削除処理-------------------------------------------------------
   const onChickDelete = (index) => {
     // 配列コピー
     const newTodos = [...incompleteTodos];
@@ -25,7 +27,7 @@ export const App = () => {
     setIncompleteTodos(newTodos);
   };
 
-  // 完了処理追加
+  // 完了処理追加-------------------------------------------------------
   const onChickTodoAdd = (index) => {
     // 配列コピー
     const newTodos = [...incompleteTodos];
@@ -39,6 +41,19 @@ export const App = () => {
     setIncompleteTodos(newTodos);
   };
 
+  // 戻るボタンの処理-------------------------------------------------------
+  const onChickReturn = (index) => {
+    // 配列コピー
+    const newTodos = [...completeTodos];
+    //　完了のTODOの配列とClickイベントで完了したTODOをreturnTodosに追加
+    const retrunTodos = [...incompleteTodos, newTodos[index]];
+    // 完了TODOリストをレンダリング
+    setIncompleteTodos(retrunTodos);
+    // 削除処理
+    newTodos.splice(index, 1);
+    //　削除された配列を追加
+    setCompleteTodos(newTodos);
+  };
   // retrun処理-------------------------------------------
   return (
     <>
@@ -68,11 +83,11 @@ export const App = () => {
       <div className="complete-area">
         <p className="title">完了のTODO</p>
         <ul>
-          {completeTodos.map((todo1) => {
+          {completeTodos.map((todo1, index) => {
             return (
               <div key={todo1} className="list-row">
                 <li>{todo1}</li>
-                <button>戻す</button>
+                <button onClick={() => onChickReturn(index)}>戻す</button>
               </div>
             );
           })}
