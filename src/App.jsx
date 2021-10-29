@@ -15,7 +15,15 @@ export const App = () => {
     setIncompleteTodos(newTodos);
     setTodoText("");
   };
-
+  // TODリスト削除処理
+  const onChickDelete = (index) => {
+    // 配列コピー
+    const newTodos = [...incompleteTodos];
+    // 削除処理
+    newTodos.splice(index, 1);
+    //　削除された配列を追加
+    setIncompleteTodos(newTodos);
+  };
   // retrun処理-------------------------------------------
   return (
     <>
@@ -31,12 +39,12 @@ export const App = () => {
       <div className="incomplete-area">
         <p className="title">未完了のTODO</p>
         <ul>
-          {incompleteTodos.map((todo) => {
+          {incompleteTodos.map((todo, index) => {
             return (
               <div key={todo} className="list-row">
                 <li>{todo}</li>
                 <button>完了</button>
-                <button>削除</button>
+                <button onClick={() => onChickDelete(index)}>削除</button>
               </div>
             );
           })}
