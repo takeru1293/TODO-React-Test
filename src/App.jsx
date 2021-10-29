@@ -3,13 +3,29 @@ import "./styles.css";
 
 export const App = () => {
   // Todoリストのコンポーネント化
-  const [incompleteTodos, setIncompleteTodos] = useState(["aaaaa", "iiiiiii"]);
+  const [incompleteTodos, setIncompleteTodos] = useState([]);
   const [completeTodos, setCompleteTodos] = useState(["uuuuuuu", "eeeeeee"]);
+  const [todoText, setTodoText] = useState("");
+  // 処理内容------------------------------------------------------------
+  const onChangeTodoText = (event) => setTodoText(event.target.value);
+  // TODO追加処理
+  const onChickAdd = () => {
+    const newTodos = [...incompleteTodos, todoText];
+    setIncompleteTodos(newTodos);
+    alert(todoText);
+  };
+
+  // retrun処理-------------------------------------------
   return (
     <>
       <div className="input-area">
-        <input type="text" placeholder="TODOを入力" />
-        <button>追加</button>
+        <input
+          type="text"
+          placeholder="TODOを入力"
+          vale={todoText}
+          onChange={onChangeTodoText}
+        />
+        <button onClick={onChickAdd}>追加</button>
       </div>
       <div className="incomplete-area">
         <p className="title">未完了のTODO</p>
