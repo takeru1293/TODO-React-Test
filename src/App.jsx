@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "./styles.css";
+import { InputTodo } from "./conpornents/InputTodo";
 
 export const App = () => {
-  // Todoリストのコンポーネント化
+  // useStateにコンストラクタとsetterの名称を設定---------------------------------------
   const [incompleteTodos, setIncompleteTodos] = useState([]);
   const [completeTodos, setCompleteTodos] = useState(["uuuuuuu", "eeeeeee"]);
   const [todoText, setTodoText] = useState("");
+
   // 処理内容------------------------------------------------------------
   const onChangeTodoText = (event) => setTodoText(event.target.value);
 
@@ -54,18 +56,15 @@ export const App = () => {
     //　削除された配列を追加
     setCompleteTodos(newTodos);
   };
+
   // retrun処理-------------------------------------------
   return (
     <>
-      <div className="input-area">
-        <input
-          type="text"
-          placeholder="TODOを入力"
-          value={todoText}
-          onChange={onChangeTodoText}
-        />
-        <button onClick={onChickAdd}>追加</button>
-      </div>
+      <InputTodo
+        todoText={todoText}
+        onChange={onChangeTodoText}
+        onClick={onChickAdd}
+      />
       <div className="incomplete-area">
         <p className="title">未完了のTODO</p>
         <ul>
