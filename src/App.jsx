@@ -10,9 +10,10 @@ export const App = () => {
   const onChangeTodoText = (event) => setTodoText(event.target.value);
   // TODO追加処理
   const onChickAdd = () => {
+    if (todoText === "") return;
     const newTodos = [...incompleteTodos, todoText];
     setIncompleteTodos(newTodos);
-    alert(todoText);
+    setTodoText("");
   };
 
   // retrun処理-------------------------------------------
@@ -22,7 +23,7 @@ export const App = () => {
         <input
           type="text"
           placeholder="TODOを入力"
-          vale={todoText}
+          value={todoText}
           onChange={onChangeTodoText}
         />
         <button onClick={onChickAdd}>追加</button>
@@ -44,10 +45,10 @@ export const App = () => {
       <div className="complete-area">
         <p className="title">完了のTODO</p>
         <ul>
-          {completeTodos.map((todo) => {
+          {completeTodos.map((todo1) => {
             return (
-              <div key={todo} className="list-row">
-                <li>{todo}</li>
+              <div key={todo1} className="list-row">
+                <li>{todo1}</li>
                 <button>戻す</button>
               </div>
             );
