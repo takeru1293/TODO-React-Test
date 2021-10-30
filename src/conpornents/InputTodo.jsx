@@ -1,3 +1,11 @@
+/**
+ * 未完了TODOエリアのコンポーネント
+ * @param {todoText,onChange,onClick} prop
+ * todoText:テキストエリアの値
+ * onChange:追加ボタンの値へ工事の処理
+ * onClick:削除ボタンのonClick処理
+ */
+
 import React from "react";
 
 export const InputTodo = (prop) => {
