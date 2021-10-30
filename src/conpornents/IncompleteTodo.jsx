@@ -10,9 +10,6 @@ import React from "react";
 
 export const IncompleteTodo = (prop) => {
   const { todoList, onClickC, onClickD } = prop;
-  console.log(todoList);
-  console.log(onClickC);
-  console.log(onClickD);
 
   return (
     <div className="incomplete-area">
