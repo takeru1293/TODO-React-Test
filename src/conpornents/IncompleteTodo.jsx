@@ -8,11 +8,20 @@
 
 import React from "react";
 
+const style = {
+  backgroundColor: "#c6ffee",
+  width: "400px",
+  minHeight: "200px",
+  padding: "8px",
+  margin: "8px",
+  borderRadius: "8px"
+};
+
 export const IncompleteTodo = (prop) => {
   const { todoList, onClickC, onClickD } = prop;
 
   return (
-    <div className="incomplete-area">
+    <div style={style} className="incomplete-area">
       <p className="title">未完了のTODO</p>
       <ul>
         {todoList.map((todo, index) => {
