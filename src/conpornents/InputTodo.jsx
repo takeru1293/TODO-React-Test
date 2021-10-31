@@ -7,6 +7,7 @@
  */
 
 import React from "react";
+import { Message } from "./Message";
 
 const style = {
   backgroundColor: "#c1ffff",
@@ -18,7 +19,28 @@ const style = {
 };
 
 export const InputTodo = (prop) => {
-  const { todoText, onChange, onClick } = prop;
+  const { todoText, onChange, onClick, data } = prop;
+  const { incompleteTodos } = data;
+
+  const showErrorMessage = () => {
+    return incompleteTodos.length >= 5;
+  };
+  // 同一TODOをはじくチェック処理
+  const checkSameTODO = () => {
+    let result = false;
+    incompleteTodos.map((todo) => {
+      if (todo === todoText) result = true;
+      return null;
+    });
+    return result;
+  };
+
+  const message1 = ["同じTODOがあります", "確認してください。"];
+  const message2 = [
+    "登録できるTODOは5個までです。",
+    "未完了のTODOから値を削除してください。"
+  ];
+
   return (
     <>
       <div style={style} className="input-area">
@@ -26,10 +48,18 @@ export const InputTodo = (prop) => {
           type="text"
           placeholder="TODOを入力"
           value={todoText}
-          onChange={onChange}
+          onChange={(checkSameTODO(), onChange)}
+          disabled={showErrorMessage()}
         />
-        <button onClick={onClick}>追加</button>
+        <button
+          onClick={onClick}
+          disabled={showErrorMessage() || checkSameTODO()}
+        >
+          追加
+        </button>
       </div>
+      <Message message={message1} type="error" showFlg={checkSameTODO()} />
+      <Message message={message2} type="error" showFlg={showErrorMessage()} />
     </>
   );
 };

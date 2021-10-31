@@ -45,7 +45,13 @@ export const Message = (prop) => {
   // HTML-------------------------------------------------------------------
   return (
     <div style={typeChangeDivStyle(type)}>
-      <p style={styleP}>{message}</p>
+      {message.map((msg) => {
+        return (
+          <p key={msg} style={styleP}>
+            {msg}
+          </p>
+        );
+      })}
     </div>
   );
 };

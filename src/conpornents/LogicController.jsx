@@ -55,6 +55,7 @@ export const LogicController = (prop) => {
         todoText={todoText}
         onChange={onChangeTodoText}
         onClick={onChickAdd}
+        data={prop}
       />
 
       {/* 未完了TODOエリアのエリアのコンポーネントを読み込み */}
@@ -62,7 +63,6 @@ export const LogicController = (prop) => {
         todoList={incompleteTodos}
         onClickC={onChickTodoAdd}
         onClickD={onChickDelete}
-        data={prop}
       />
       {/* 完了TODOエリアのエリアのコンポーネントを読み込み */}
       <CompleteTodo

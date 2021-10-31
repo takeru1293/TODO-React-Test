@@ -7,14 +7,20 @@ input {
   padding: 6px 16px;
   outline: none;
 }
+input:disabled {
+  background-color: #b3b1b1f8;
+}
 button {
   border-radius: 8px;
   border: none;
   padding: 4px 16px;
   margin: 4px;
 }
+button:disabled {
+  background-color: #b3b1b1f8;
+}
 
-button:hover {
+button:hover:not(:disabled) {
   background-color: #ff7fff;
   color: #fff;
   cursor: pointer;

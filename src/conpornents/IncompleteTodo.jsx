@@ -7,16 +7,10 @@
  */
 
 import React from "react";
-import { Message } from "./Message";
 
 export const IncompleteTodo = (prop) => {
   // 処理定義----------------------------------------------------------
-  const { todoList, onClickC, onClickD, data } = prop;
-  const { incompleteTodos } = data;
-
-  const showErrorMessage = () => {
-    return incompleteTodos.length >= 5;
-  };
+  const { todoList, onClickC, onClickD } = prop;
 
   // レイアウト定義----------------------------------------------------------
   const style = {
@@ -27,6 +21,8 @@ export const IncompleteTodo = (prop) => {
     margin: "8px",
     borderRadius: "8px"
   };
+
+  // HTML定義エリア----------------------------------------------------------
   return (
     <>
       <div style={style} className="incomplete-area">
@@ -43,11 +39,6 @@ export const IncompleteTodo = (prop) => {
           })}
         </ul>
       </div>
-      <Message
-        message="登録できるTODOは5個までです。"
-        type="error"
-        showFlg={showErrorMessage()}
-      />
     </>
   );
 };
