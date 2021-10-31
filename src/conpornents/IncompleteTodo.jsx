@@ -12,17 +12,9 @@ import { Message } from "./Message";
 export const IncompleteTodo = (prop) => {
   // 処理定義----------------------------------------------------------
   const { todoList, onClickC, onClickD, data } = prop;
-  const {
-    incompleteTodos,
-    setIncompleteTodos,
-    completeTodos,
-    setCompleteTodos,
-    todoText,
-    setTodoText
-  } = data;
+  const { incompleteTodos } = data;
 
   const showErrorMessage = () => {
-    console.log(incompleteTodos.length);
     return incompleteTodos.length >= 5;
   };
 
